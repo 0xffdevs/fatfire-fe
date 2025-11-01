@@ -1,8 +1,39 @@
 'use client';
 
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, PropsWithChildren } from 'react';
 import { ArrowRight, TrendingUp, Code, DollarSign, BookOpen, Calculator, MessageSquare, Twitter, Youtube, Play, ChevronRight, Zap, Target, Cpu } from 'lucide-react';
+
+// Minimal mock link: prevents navigation and looks clickable
+function MockLink({
+  className,
+  title = 'Coming soon',
+  children,
+}: PropsWithChildren<{ className?: string; title?: string }>) {
+  return (
+    <a
+      href="#"
+      title={title}
+      aria-disabled="true"
+      role="link"
+      className={className + ' cursor-not-allowed'}
+      onClick={(e) => {
+        e.preventDefault();
+        // eslint-disable-next-line no-console
+        console.log('Mock nav blocked');
+      }}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          // eslint-disable-next-line no-console
+          console.log('Mock nav blocked');
+        }
+      }}
+      tabIndex={0}
+    >
+      {children}
+    </a>
+  );
+}
 
 export default function HomePage() {
   const [typedText, setTypedText] = useState('');
@@ -90,14 +121,14 @@ export default function HomePage() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <Link href="/learn" className="btn-terminal flex items-center">
+          <MockLink className="btn-terminal flex items-center">
             <Code className="mr-2 w-5 h-5" />
             START LEARNING
-          </Link>
-          <Link href="/calculators" className="btn-terminal flex items-center">
+          </MockLink>
+          <MockLink className="btn-terminal flex items-center">
             <Calculator className="mr-2 w-5 h-5" />
             CALCULATE FIRE
-          </Link>
+          </MockLink>
         </div>
 
         <div className="mt-8 text-sm text-green-400 opacity-60">
@@ -119,14 +150,14 @@ export default function HomePage() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {programmingLanguages.map((lang) => (
-            <Link key={lang.name} href={`/learn/${lang.name.toLowerCase()}`}>
+            <MockLink key={lang.name}>
               <div className="card-terminal text-center hover:scale-105 transition-transform cursor-pointer">
                 <div className="text-4xl mb-2">{lang.icon}</div>
                 <h3 className="font-bold text-green-400">{lang.name}</h3>
                 <p className="text-xs text-green-400 opacity-60">{lang.posts} posts</p>
                 <p className="text-xs text-green-300 mt-1">[{lang.level}]</p>
               </div>
-            </Link>
+            </MockLink>
           ))}
         </div>
       </section>
@@ -137,9 +168,9 @@ export default function HomePage() {
           <h2 className="text-2xl font-bold glitch" data-text="FEATURED POSTS">
             &gt; FEATURED POSTS
           </h2>
-          <Link href="/blogs" className="text-green-400 hover:text-green-300 flex items-center">
+          <MockLink className="text-green-400 hover:text-green-300 flex items-center">
             View all <ChevronRight className="w-4 h-4 ml-1" />
-          </Link>
+          </MockLink>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -192,11 +223,10 @@ export default function HomePage() {
             <h3 className="text-xl font-bold text-green-400">How I Achieved FIRE at 30 as a Developer</h3>
             <p className="text-green-400 opacity-60 text-sm mt-1">Published 2 days ago • 45K views</p>
           </div>
-          <a href="https://youtube.com/@0xffdevs" target="_blank" rel="noopener noreferrer"
-            className="btn-terminal flex items-center text-sm">
+          <MockLink className="btn-terminal flex items-center text-sm">
             <Youtube className="mr-2 w-4 h-4" />
             SUBSCRIBE
-          </a>
+          </MockLink>
         </div>
       </section>
 
@@ -206,9 +236,9 @@ export default function HomePage() {
           <h2 className="text-2xl font-bold glitch" data-text="CURATED TWEETS">
             &gt; CURATED TWEETS
           </h2>
-          <Link href="/tweets" className="text-green-400 hover:text-green-300 flex items-center">
+          <MockLink className="text-green-400 hover:text-green-300 flex items-center">
             View all <ChevronRight className="w-4 h-4 ml-1" />
-          </Link>
+          </MockLink>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -257,17 +287,17 @@ export default function HomePage() {
           <h2 className="text-2xl font-bold glitch" data-text="POPULAR QUESTIONS">
             &gt; POPULAR QUESTIONS
           </h2>
-          <Link href="/qna" className="text-green-400 hover:text-green-300 flex items-center">
+          <MockLink className="text-green-400 hover:text-green-300 flex items-center">
             Ask question <ChevronRight className="w-4 h-4 ml-1" />
-          </Link>
+          </MockLink>
         </div>
 
         <div className="space-y-4">
           {popularQuestions.map((q) => (
             <div key={q.id} className="card-terminal flex justify-between items-center">
-              <Link href={`/qna/${q.id}`} className="text-green-400 hover:text-green-300 font-bold">
+              <MockLink className="text-green-400 hover:text-green-300 font-bold">
                 Q: {q.question}
-              </Link>
+              </MockLink>
               <div className="flex items-center text-green-400 opacity-60">
                 <TrendingUp className="w-4 h-4 mr-1" />
                 <span className="text-sm">{q.votes}</span>
@@ -317,13 +347,13 @@ export default function HomePage() {
         <p className="text-green-400 opacity-80 mb-6">
           Weekly insights on high-value tech skills and smart investing
         </p>
-        <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+        <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
           <input
             type="email"
             placeholder="your@email.com"
             className="input-terminal flex-1"
           />
-          <button type="submit" className="btn-terminal">
+          <button type="submit" className="btn-terminal cursor-not-allowed" title="Coming soon">
             SUBSCRIBE
           </button>
         </form>
