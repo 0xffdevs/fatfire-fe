@@ -25,9 +25,9 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="border-b-2 border-green-400 bg-black sticky top-0 z-50">
-            <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-16">
+        <nav className="border-b-2 border-green-400 bg-black sticky top-0 z-50 backdrop-blur-sm bg-black/95">
+            <div className="container mx-auto container-spacing max-w-7xl">
+                <div className="flex items-center justify-between h-16 md:h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center space-x-2 group">
                         <div className="ascii-art text-green-400 group-hover:text-green-300 transition-colors">
@@ -43,15 +43,15 @@ export default function Navbar() {
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden lg:flex items-center space-x-6">
+                    <div className="hidden lg:flex items-center gap-6 xl:gap-8">
                         {navItems.map((item) => (
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className="flex items-center space-x-1 text-green-400 hover:text-green-300 transition-colors group"
+                                className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors group text-sm font-bold tracking-wider"
                             >
                                 <span className="group-hover:animate-pulse">{item.icon}</span>
-                                <span className="text-sm font-bold tracking-wider">{item.label}</span>
+                                <span>{item.label}</span>
                             </Link>
                         ))}
                     </div>
@@ -64,11 +64,11 @@ export default function Navbar() {
                                 placeholder="search tags..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="input-terminal w-48 lg:w-64 pr-10 text-sm"
+                                className="input-terminal w-48 lg:w-64 xl:w-80 pr-10 text-sm"
                             />
                             <button
                                 type="submit"
-                                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-green-400 hover:text-green-300"
+                                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-green-400 hover:text-green-300 transition-colors"
                             >
                                 <Search className="w-4 h-4" />
                             </button>
@@ -76,7 +76,7 @@ export default function Navbar() {
                     </form>
 
                     {/* Social Links */}
-                    <div className="hidden lg:flex items-center space-x-4">
+                    <div className="hidden lg:flex items-center gap-4">
                         <a
                             href="https://twitter.com/0xffdevs"
                             target="_blank"
@@ -114,8 +114,8 @@ export default function Navbar() {
 
                 {/* Mobile Menu */}
                 {isMenuOpen && (
-                    <div className="lg:hidden border-t-2 border-green-400 py-4">
-                        <form onSubmit={handleSearch} className="mb-4">
+                    <div className="lg:hidden border-t-2 border-green-400 py-6">
+                        <form onSubmit={handleSearch} className="mb-6">
                             <input
                                 type="text"
                                 placeholder="search tags..."
@@ -125,19 +125,21 @@ export default function Navbar() {
                             />
                         </form>
 
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className="flex items-center space-x-2 py-2 text-green-400 hover:text-green-300 transition-colors"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                {item.icon}
-                                <span className="text-sm font-bold">{item.label}</span>
-                            </Link>
-                        ))}
+                        <div className="flex flex-col gap-2">
+                            {navItems.map((item) => (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    className="flex items-center gap-3 py-3 text-green-400 hover:text-green-300 transition-colors text-sm font-bold"
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    {item.icon}
+                                    <span>{item.label}</span>
+                                </Link>
+                            ))}
+                        </div>
 
-                        <div className="flex items-center space-x-4 mt-4 pt-4 border-t border-green-400">
+                        <div className="flex items-center gap-4 mt-6 pt-6 border-t border-green-400">
                             <a
                                 href="https://twitter.com/0xffdevs"
                                 target="_blank"

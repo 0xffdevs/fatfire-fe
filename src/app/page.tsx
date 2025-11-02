@@ -96,10 +96,10 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-16 md:space-y-20 lg:space-y-24 xl:space-y-28 w-full flex flex-col items-center">
       {/* Hero Section */}
-      <section className="min-h-[60vh] flex flex-col justify-center items-center text-center py-12">
-        <div className="mb-8">
+      <section className="min-h-[60vh] flex flex-col justify-center items-center text-center py-16 md:py-20 lg:py-24 xl:py-28">
+        <div className="mb-10 md:mb-12">
           <pre className="ascii-art text-green-400 text-xs md:text-sm">
             {`
  ██████╗ ██╗  ██╗███████╗███████╗██████╗ ███████╗██╗   ██╗███████╗
@@ -112,21 +112,21 @@ export default function HomePage() {
           </pre>
         </div>
 
-        <h1 className="text-3xl md:text-5xl font-bold mb-4 terminal-text">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-10 lg:mb-12 terminal-text">
           <span className="cursor">{typedText}</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-green-400 opacity-80 mb-8 max-w-3xl">
+        <p className="text-base md:text-lg lg:text-xl text-green-400 opacity-80 mb-10 md:mb-14 lg:mb-16 max-w-3xl px-4">
           Master high-value tech skills • Smart investing strategies • Achieve FIRE
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4">
-          <MockLink className="btn-terminal flex items-center">
-            <Code className="mr-2 w-5 h-5" />
+        <div className="flex flex-col sm:flex-row gap-4 md:gap-6 px-4 items-center justify-center">
+          <MockLink className="btn-terminal">
+            <Code className="w-5 h-5" />
             START LEARNING
           </MockLink>
-          <MockLink className="btn-terminal flex items-center">
-            <Calculator className="mr-2 w-5 h-5" />
+          <MockLink className="btn-terminal">
+            <Calculator className="w-5 h-5" />
             CALCULATE FIRE
           </MockLink>
         </div>
@@ -137,35 +137,37 @@ export default function HomePage() {
       </section>
 
       {/* Programming Languages Section */}
-      <section className="terminal-window pt-12">
-        <div className="terminal-header">
-          <span className="terminal-dot"></span>
-          <span className="terminal-dot"></span>
-          <span className="terminal-dot"></span>
-        </div>
+      <section className="w-full flex flex-col items-center">
+        <div className="terminal-window w-full max-w-7xl">
+          <div className="terminal-header">
+            <span className="terminal-dot"></span>
+            <span className="terminal-dot"></span>
+            <span className="terminal-dot"></span>
+          </div>
 
-        <h2 className="text-2xl font-bold mb-6 glitch" data-text="PROGRAMMING LANGUAGES">
-          &gt; PROGRAMMING LANGUAGES
-        </h2>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-8 md:mb-10 lg:mb-12 glitch" data-text="PROGRAMMING LANGUAGES">
+            &gt; PROGRAMMING LANGUAGES
+          </h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {programmingLanguages.map((lang) => (
-            <MockLink key={lang.name}>
-              <div className="card-terminal text-center hover:scale-105 transition-transform cursor-pointer">
-                <div className="text-4xl mb-2">{lang.icon}</div>
-                <h3 className="font-bold text-green-400">{lang.name}</h3>
-                <p className="text-xs text-green-400 opacity-60">{lang.posts} posts</p>
-                <p className="text-xs text-green-300 mt-1">[{lang.level}]</p>
-              </div>
-            </MockLink>
-          ))}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
+            {programmingLanguages.map((lang) => (
+              <MockLink key={lang.name}>
+                <div className="card-terminal text-center hover:scale-105 transition-transform cursor-pointer">
+                  <div className="text-4xl mb-2">{lang.icon}</div>
+                  <h3 className="font-bold text-green-400">{lang.name}</h3>
+                  <p className="text-xs text-green-400 opacity-60">{lang.posts} posts</p>
+                  <p className="text-xs text-green-300 mt-1">[{lang.level}]</p>
+                </div>
+              </MockLink>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Featured Blog Posts */}
-      <section>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold glitch" data-text="FEATURED POSTS">
+      <section className="w-full flex flex-col items-center">
+        <div className="w-full max-w-7xl mx-auto flex flex-col items-center gap-4 mb-8 md:mb-10 lg:mb-12">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold glitch" data-text="FEATURED POSTS">
             &gt; FEATURED POSTS
           </h2>
           <MockLink className="text-green-400 hover:text-green-300 flex items-center">
@@ -173,19 +175,19 @@ export default function HomePage() {
           </MockLink>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 w-full max-w-7xl mx-auto">
           {featuredPosts.map((post) => (
-            <article key={post.id} className="card-terminal">
-              <div className="flex flex-wrap gap-2 mb-3">
+            <article key={post.id} className="card-terminal text-center">
+              <div className="flex flex-wrap gap-2 mb-4 justify-center">
                 {post.tags.map(tag => (
                   <span key={tag} className="tag">#{tag}</span>
                 ))}
               </div>
-              <h3 className="text-xl font-bold mb-2 text-green-400 hover:text-green-300 cursor-pointer">
+              <h3 className="text-xl font-bold mb-4 text-green-400 hover:text-green-300 cursor-pointer">
                 {post.title}
               </h3>
-              <p className="text-green-400 opacity-80 mb-3">{post.excerpt}</p>
-              <div className="flex justify-between text-sm text-green-400 opacity-60">
+              <p className="text-green-400 opacity-80 mb-4 leading-relaxed">{post.excerpt}</p>
+              <div className="flex justify-center items-center text-sm text-green-400 opacity-60 pt-2 gap-4">
                 <span>{post.readTime} read</span>
                 <span>{post.views} views</span>
               </div>
@@ -195,18 +197,19 @@ export default function HomePage() {
       </section>
 
       {/* Embedded YouTube Video */}
-      <section className="terminal-window pt-12">
-        <div className="terminal-header">
-          <span className="terminal-dot"></span>
-          <span className="terminal-dot"></span>
-          <span className="terminal-dot"></span>
-        </div>
+      <section className="w-full flex flex-col items-center">
+        <div className="terminal-window w-full max-w-5xl">
+          <div className="terminal-header">
+            <span className="terminal-dot"></span>
+            <span className="terminal-dot"></span>
+            <span className="terminal-dot"></span>
+          </div>
 
-        <h2 className="text-2xl font-bold mb-6 glitch" data-text="LATEST VIDEO">
-          &gt; LATEST VIDEO
-        </h2>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-8 md:mb-10 lg:mb-12 glitch" data-text="LATEST VIDEO">
+            &gt; LATEST VIDEO
+          </h2>
 
-        <div className="aspect-video bg-black border-2 border-green-400 rounded-lg overflow-hidden">
+          <div className="aspect-video bg-black border-2 border-green-400 rounded-lg overflow-hidden mb-6 md:mb-8">
           <iframe
             width="100%"
             height="100%"
@@ -218,22 +221,23 @@ export default function HomePage() {
           ></iframe>
         </div>
 
-        <div className="mt-4 flex items-center justify-between">
+        <div className="flex flex-col items-center gap-4 text-center">
           <div>
-            <h3 className="text-xl font-bold text-green-400">How I Achieved FIRE at 30 as a Developer</h3>
-            <p className="text-green-400 opacity-60 text-sm mt-1">Published 2 days ago • 45K views</p>
+            <h3 className="text-lg md:text-xl font-bold text-green-400 mb-2">How I Achieved FIRE at 30 as a Developer</h3>
+            <p className="text-green-400 opacity-60 text-sm">Published 2 days ago • 45K views</p>
           </div>
-          <MockLink className="btn-terminal flex items-center text-sm">
-            <Youtube className="mr-2 w-4 h-4" />
+          <MockLink className="btn-terminal text-sm whitespace-nowrap">
+            <Youtube className="w-4 h-4" />
             SUBSCRIBE
           </MockLink>
+          </div>
         </div>
       </section>
 
       {/* Curated Tweets */}
-      <section>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold glitch" data-text="CURATED TWEETS">
+      <section className="w-full flex flex-col items-center">
+        <div className="w-full max-w-5xl mx-auto flex flex-col items-center gap-4 mb-8 md:mb-10 lg:mb-12">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold glitch" data-text="CURATED TWEETS">
             &gt; CURATED TWEETS
           </h2>
           <MockLink className="text-green-400 hover:text-green-300 flex items-center">
@@ -241,38 +245,38 @@ export default function HomePage() {
           </MockLink>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 w-full max-w-5xl mx-auto">
           {/* Mock embedded tweets */}
-          <div className="card-terminal">
-            <div className="flex items-start justify-between mb-3">
-              <div className="flex items-center">
-                <Twitter className="w-5 h-5 mr-2 text-green-400" />
+          <div className="card-terminal text-center">
+            <div className="flex flex-col items-center mb-4 gap-2">
+              <div className="flex items-center gap-2">
+                <Twitter className="w-5 h-5 text-green-400 flex-shrink-0" />
                 <span className="font-bold text-green-400">@vitalikbuterin</span>
               </div>
               <span className="text-xs text-green-400 opacity-60">2h ago</span>
             </div>
-            <p className="text-green-400 mb-3">
+            <p className="text-green-400 mb-4 leading-relaxed">
               ZK-SNARKs are becoming the foundation of Ethereum scaling. Every developer should understand the basics.
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 justify-center">
               <span className="tag">#ethereum</span>
               <span className="tag">#zk-proofs</span>
               <span className="tag">#scaling</span>
             </div>
           </div>
 
-          <div className="card-terminal">
-            <div className="flex items-start justify-between mb-3">
-              <div className="flex items-center">
-                <Twitter className="w-5 h-5 mr-2 text-green-400" />
+          <div className="card-terminal text-center">
+            <div className="flex flex-col items-center mb-4 gap-2">
+              <div className="flex items-center gap-2">
+                <Twitter className="w-5 h-5 text-green-400 flex-shrink-0" />
                 <span className="font-bold text-green-400">@0xlelouch_</span>
               </div>
               <span className="text-xs text-green-400 opacity-60">5h ago</span>
             </div>
-            <p className="text-green-400 mb-3">
+            <p className="text-green-400 mb-4 leading-relaxed">
               Just crossed 2Cr net worth at 28. Thread on how I did it with a tech salary in India 👇
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 justify-center">
               <span className="tag">#fire</span>
               <span className="tag">#india</span>
               <span className="tag">#wealth</span>
@@ -282,9 +286,9 @@ export default function HomePage() {
       </section>
 
       {/* Q&A Section */}
-      <section>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold glitch" data-text="POPULAR QUESTIONS">
+      <section className="w-full flex flex-col items-center">
+        <div className="w-full max-w-4xl mx-auto flex flex-col items-center gap-4 mb-8 md:mb-10 lg:mb-12">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold glitch" data-text="POPULAR QUESTIONS">
             &gt; POPULAR QUESTIONS
           </h2>
           <MockLink className="text-green-400 hover:text-green-300 flex items-center">
@@ -292,15 +296,15 @@ export default function HomePage() {
           </MockLink>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-6 md:space-y-8 w-full max-w-4xl mx-auto">
           {popularQuestions.map((q) => (
-            <div key={q.id} className="card-terminal flex justify-between items-center">
+            <div key={q.id} className="card-terminal flex flex-col items-center gap-4 text-center">
               <MockLink className="text-green-400 hover:text-green-300 font-bold">
                 Q: {q.question}
               </MockLink>
-              <div className="flex items-center text-green-400 opacity-60">
-                <TrendingUp className="w-4 h-4 mr-1" />
-                <span className="text-sm">{q.votes}</span>
+              <div className="flex items-center text-green-400 opacity-60 gap-2">
+                <TrendingUp className="w-4 h-4" />
+                <span className="text-sm whitespace-nowrap">{q.votes} votes</span>
               </div>
             </div>
           ))}
@@ -308,43 +312,46 @@ export default function HomePage() {
       </section>
 
       {/* Quick Calculator */}
-      <section className="terminal-window pt-12">
-        <div className="terminal-header">
-          <span className="terminal-dot"></span>
-          <span className="terminal-dot"></span>
-          <span className="terminal-dot"></span>
-        </div>
+      <section className="w-full flex flex-col items-center">
+        <div className="terminal-window w-full max-w-4xl">
+          <div className="terminal-header">
+            <span className="terminal-dot"></span>
+            <span className="terminal-dot"></span>
+            <span className="terminal-dot"></span>
+          </div>
 
-        <h2 className="text-2xl font-bold mb-6 glitch" data-text="QUICK FIRE CALCULATOR">
-          &gt; QUICK FIRE CALCULATOR
-        </h2>
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-8 md:mb-10 lg:mb-12 glitch" data-text="QUICK FIRE CALCULATOR">
+            &gt; QUICK FIRE CALCULATOR
+          </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6 md:mb-8 max-w-2xl mx-auto">
           <div>
-            <label className="block text-green-400 mb-2">Monthly Investment (₹)</label>
+            <label className="block text-green-400 mb-3">Monthly Investment (₹)</label>
             <input type="number" className="input-terminal w-full" placeholder="50000" />
           </div>
           <div>
-            <label className="block text-green-400 mb-2">Expected Return (%)</label>
+            <label className="block text-green-400 mb-3">Expected Return (%)</label>
             <input type="number" className="input-terminal w-full" placeholder="12" />
           </div>
         </div>
 
-        <button className="btn-terminal mt-6 w-full">
+        <button className="btn-terminal w-full mb-6 md:mb-8 max-w-2xl mx-auto block">
           CALCULATE NET WORTH →
         </button>
 
-        <p className="text-center text-green-400 opacity-60 text-sm mt-4">
-          Try our advanced calculators for detailed projections
-        </p>
+          <p className="text-center text-green-400 opacity-60 text-sm">
+            Try our advanced calculators for detailed projections
+          </p>
+        </div>
       </section>
 
       {/* Newsletter Signup */}
-      <section className="border-2 border-green-400 p-8 text-center">
-        <h2 className="text-2xl font-bold mb-4 glitch" data-text="STAY UPDATED">
+      <section className="w-full flex flex-col items-center">
+        <div className="border-2 border-green-400 p-8 md:p-12 lg:p-16 text-center rounded-lg w-full max-w-4xl mx-auto">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 md:mb-8 glitch" data-text="STAY UPDATED">
           &gt; STAY UPDATED
         </h2>
-        <p className="text-green-400 opacity-80 mb-6">
+        <p className="text-base md:text-lg text-green-400 opacity-80 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
           Weekly insights on high-value tech skills and smart investing
         </p>
         <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
@@ -357,6 +364,7 @@ export default function HomePage() {
             SUBSCRIBE
           </button>
         </form>
+        </div>
       </section>
     </div>
   );

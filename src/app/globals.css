@@ -2,11 +2,70 @@
 @import "tailwindcss";
 
 :root {
+  /* Color System */
   --green-primary: #00ff00;
   --green-dark: #00cc00;
   --green-light: #66ff66;
+  --green-darker: #009900;
   --terminal-bg: #000000;
   --terminal-border: #00ff00;
+  --terminal-bg-dark: #000a00;
+  
+  /* Spacing Scale (Industry Standard 4px/8px base) */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-20: 5rem;    /* 80px */
+  --space-24: 6rem;    /* 96px */
+  
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  
+  /* Container Widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+  
+  /* Shadows */
+  --shadow-sm: 0 0 10px rgba(0, 255, 0, 0.2);
+  --shadow-md: 0 0 20px rgba(0, 255, 0, 0.3);
+  --shadow-lg: 0 0 30px rgba(0, 255, 0, 0.4);
+  
+  /* Z-index Scale */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal: 400;
+  --z-popover: 500;
+  --z-tooltip: 600;
 }
 
 * {
@@ -15,12 +74,72 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   font-family: var(--font-space-mono), 'Courier New', monospace;
   background: var(--terminal-bg);
   color: var(--green-primary);
   overflow-x: hidden;
+  line-height: 1.7;
 }
+
+/* Main container - center content */
+main {
+  text-align: center;
+}
+
+/* All sections should be centered */
+section {
+  text-align: center;
+}
+
+/* Center all headings */
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+}
+
+/* Center paragraphs by default */
+p {
+  text-align: center;
+}
+
+/* Card and terminal window content centered */
+.card-terminal {
+  text-align: center;
+}
+
+.terminal-window {
+  text-align: center;
+}
+
+/* Articles centered */
+article {
+  text-align: center;
+}
+
+/* Left align form elements for usability */
+input,
+textarea,
+select {
+  text-align: left;
+}
+
+label {
+  text-align: left;
+}
+
+/* Code blocks stay left-aligned */
+code,
+pre {
+  text-align: left;
+}
+
+/* Don't override Tailwind flex utilities - they handle their own justify-content */
 
 /* Terminal glow effect */
 .terminal-glow {
@@ -81,15 +200,25 @@ body {
 
 /* Terminal window styling */
 .terminal-window {
-  background: #000000;
+  background: var(--terminal-bg);
   border: 2px solid var(--green-primary);
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 
-    0 0 20px rgba(0, 255, 0, 0.3),
-    inset 0 0 20px rgba(0, 255, 0, 0.05);
+  border-radius: var(--radius-md);
+  padding: var(--space-6) var(--space-6) var(--space-8);
+  box-shadow: var(--shadow-md), inset 0 0 20px rgba(0, 255, 0, 0.05);
   position: relative;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .terminal-window {
+    padding: var(--space-5) var(--space-5) var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .terminal-window {
+    padding: var(--space-8) var(--space-8) var(--space-10);
+  }
 }
 
 .terminal-window::before {
@@ -127,22 +256,42 @@ body {
   background: transparent;
   color: var(--green-primary);
   border: 2px solid var(--green-primary);
-  padding: 10px 20px;
+  padding: var(--space-3) var(--space-5);
   font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.125em;
   position: relative;
   overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px; /* Accessibility: minimum touch target */
 }
 
-.btn-terminal:hover {
+.btn-terminal:hover:not(:disabled) {
   background: var(--green-primary);
   color: #000;
-  box-shadow: 
-    0 0 20px var(--green-primary),
-    inset 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-md), inset 0 0 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-terminal:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-terminal:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-terminal:focus-visible {
+  outline: 2px solid var(--green-primary);
+  outline-offset: 2px;
 }
 
 .btn-terminal::before {
@@ -156,7 +305,7 @@ body {
   transition: left 0.5s;
 }
 
-.btn-terminal:hover::before {
+.btn-terminal:hover:not(:disabled)::before {
   left: 100%;
 }
 
@@ -165,22 +314,34 @@ body {
   background: transparent;
   border: 1px solid var(--green-primary);
   color: var(--green-primary);
-  padding: 10px;
+  padding: var(--space-3) var(--space-4);
   font-family: inherit;
+  font-size: var(--font-size-base);
   outline: none;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
+  width: 100%;
+  min-height: 44px; /* Accessibility: minimum touch target */
 }
 
 .input-terminal:focus {
-  box-shadow: 
-    0 0 10px var(--green-primary),
-    inset 0 0 5px rgba(0, 255, 0, 0.1);
+  box-shadow: var(--shadow-sm), inset 0 0 5px rgba(0, 255, 0, 0.1);
   border-color: var(--green-light);
+  outline: none;
+}
+
+.input-terminal:focus-visible {
+  outline: 2px solid var(--green-primary);
+  outline-offset: 2px;
 }
 
 .input-terminal::placeholder {
   color: var(--green-dark);
   opacity: 0.5;
+}
+
+.input-terminal:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* Code block styling */
@@ -279,36 +440,56 @@ body {
 
 /* Tag styles */
 .tag {
-  display: inline-block;
-  padding: 4px 8px;
-  margin: 2px;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
   border: 1px solid var(--green-primary);
   color: var(--green-primary);
-  font-size: 12px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
   text-transform: uppercase;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
   cursor: pointer;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
 }
 
 .tag:hover {
   background: var(--green-primary);
   color: #000;
+  transform: scale(1.05);
+}
+
+.tag:focus-visible {
+  outline: 2px solid var(--green-primary);
+  outline-offset: 2px;
 }
 
 /* Card styles */
 .card-terminal {
   background: rgba(0, 17, 0, 0.5);
   border: 1px solid var(--green-primary);
-  padding: 20px;
-  margin: 15px 0;
-  transition: all 0.3s ease;
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
 }
 
 .card-terminal:hover {
-  box-shadow: 
-    0 0 20px rgba(0, 255, 0, 0.3),
-    inset 0 0 20px rgba(0, 255, 0, 0.05);
+  box-shadow: var(--shadow-md), inset 0 0 20px rgba(0, 255, 0, 0.05);
   transform: translateY(-2px);
+  border-color: var(--green-light);
+}
+
+@media (max-width: 768px) {
+  .card-terminal {
+    padding: var(--space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-terminal {
+    padding: var(--space-8);
+  }
 }
 
 /* Scrollbar styling */
@@ -365,14 +546,93 @@ body {
   text-shadow: 0 0 5px var(--green-primary);
 }
 
-/* Responsive adjustments */
+/* Section spacing utilities */
+.section-spacing {
+  margin-bottom: var(--space-16);
+}
+
+.section-spacing-sm {
+  margin-bottom: var(--space-12);
+}
+
+.section-spacing-lg {
+  margin-bottom: var(--space-24);
+}
+
 @media (max-width: 768px) {
-  .terminal-window {
-    padding: 15px;
+  .section-spacing {
+    margin-bottom: var(--space-12);
   }
   
+  .section-spacing-lg {
+    margin-bottom: var(--space-16);
+  }
+}
+
+/* Container utilities */
+.container-spacing {
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .container-spacing {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-spacing {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+/* Form labels */
+label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .glitch {
-    font-size: 1.5rem;
+    font-size: var(--font-size-2xl);
+    letter-spacing: 0.125em;
+  }
+  
+  /* Better mobile spacing */
+  .btn-terminal {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* Focus visible improvements for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--green-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Smooth scrolling */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

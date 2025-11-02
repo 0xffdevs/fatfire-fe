@@ -27,8 +27,10 @@ export default function RootLayout({
         <div className="scanlines"></div>
         <div className="terminal-glow">
           <Navbar />
-          <main className="container mx-auto px-4 py-8">
-            {children}
+          <main className="w-full flex flex-col items-center container-spacing py-12 md:py-16 lg:py-20 xl:py-24">
+            <div className="w-full max-w-7xl mx-auto">
+              {children}
+            </div>
           </main>
           <Footer />
         </div>

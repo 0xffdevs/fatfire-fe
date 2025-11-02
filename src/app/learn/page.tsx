@@ -108,29 +108,30 @@ export default function LearnPage() {
     });
 
     return (
-        <div className="min-h-screen">
+        <div className="w-full flex flex-col items-center min-h-screen">
             {/* Header */}
-            <div className="mb-8">
-                <h1 className="text-4xl font-bold mb-4 glitch" data-text="LEARN PROGRAMMING">
+            <div className="mb-12 md:mb-16 text-center">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 glitch" data-text="LEARN PROGRAMMING">
                     &gt; LEARN PROGRAMMING
                 </h1>
-                <p className="text-green-400 opacity-80">
+                <p className="text-base md:text-lg text-green-400 opacity-80 max-w-3xl mx-auto leading-relaxed">
                     Master high-value programming languages and frameworks for the modern tech stack
                 </p>
             </div>
 
             {/* Filters */}
-            <div className="terminal-window mb-8 pt-12">
+            <div className="w-full flex flex-col items-center mb-8 md:mb-12">
+                <div className="terminal-window w-full max-w-5xl">
                 <div className="terminal-header">
                     <span className="terminal-dot"></span>
                     <span className="terminal-dot"></span>
                     <span className="terminal-dot"></span>
                 </div>
 
-                <div className="flex flex-wrap gap-4 items-center">
+                <div className="flex flex-wrap gap-4 md:gap-6 items-center">
                     <div className="flex items-center gap-2">
-                        <Filter className="w-4 h-4 text-green-400" />
-                        <span className="text-green-400">FILTER:</span>
+                        <Filter className="w-4 h-4 md:w-5 md:h-5 text-green-400" />
+                        <span className="text-green-400 font-bold">FILTER:</span>
                     </div>
 
                     <select
@@ -155,12 +156,13 @@ export default function LearnPage() {
                         <option value="advanced">Advanced</option>
                     </select>
                 </div>
+                </div>
             </div>
 
             {/* Languages Grid */}
-            <div className="space-y-8">
+            <div className="w-full flex flex-col items-center space-y-8 md:space-y-12">
                 {filteredLanguages.map(language => (
-                    <div key={language.id} className="terminal-window pt-12">
+                    <div key={language.id} className="terminal-window w-full max-w-6xl">
                         <div className="terminal-header">
                             <span className="terminal-dot"></span>
                             <span className="terminal-dot"></span>
@@ -168,16 +170,16 @@ export default function LearnPage() {
                         </div>
 
                         {/* Language Header */}
-                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-                            <div className="flex items-center gap-4">
-                                <span className="text-5xl">{language.icon}</span>
+                        <div className="flex flex-col items-center mb-6 md:mb-8 gap-6 text-center">
+                            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                                <span className="text-4xl md:text-5xl lg:text-6xl">{language.icon}</span>
                                 <div>
-                                    <h2 className="text-2xl font-bold text-green-400">{language.name}</h2>
-                                    <p className="text-green-400 opacity-60 text-sm">{language.description}</p>
+                                    <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-green-400 mb-2">{language.name}</h2>
+                                    <p className="text-green-400 opacity-60 text-sm md:text-base">{language.description}</p>
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-6 mt-4 md:mt-0">
+                            <div className="flex items-center gap-6 md:gap-8">
                                 <div className="text-center">
                                     <p className="text-2xl font-bold text-green-400">{language.totalLessons}</p>
                                     <p className="text-xs text-green-400 opacity-60">LESSONS</p>
@@ -195,9 +197,9 @@ export default function LearnPage() {
                         </div>
 
                         {/* Topics */}
-                        <div className="mb-6">
-                            <p className="text-green-400 mb-2">KEY TOPICS:</p>
-                            <div className="flex flex-wrap gap-2">
+                        <div className="mb-6 md:mb-8 text-center">
+                            <p className="text-green-400 mb-3 md:mb-4 font-bold">KEY TOPICS:</p>
+                            <div className="flex flex-wrap gap-2 md:gap-3 justify-center">
                                 {language.topics.map(topic => (
                                     <span key={topic} className="tag">#{topic.toLowerCase().replace(/\s+/g, '-')}</span>
                                 ))}
@@ -205,24 +207,24 @@ export default function LearnPage() {
                         </div>
 
                         {/* Courses */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
                             {language.courses.map(course => (
                                 <Link key={course.id} href={`/learn/${language.id}/${course.id}`}>
-                                    <div className="card-terminal cursor-pointer hover:border-green-300 transition-colors">
+                                    <div className="card-terminal cursor-pointer hover:border-green-300 transition-colors text-center">
                                         <h3 className="font-bold text-green-400 mb-2">{course.title}</h3>
 
-                                        <div className="flex items-center gap-4 text-sm text-green-400 opacity-60 mb-3">
-                                            <span className="flex items-center">
-                                                <Clock className="w-3 h-3 mr-1" />
+                                        <div className="flex items-center justify-center gap-4 text-sm text-green-400 opacity-60 mb-3">
+                                            <span className="flex items-center gap-1">
+                                                <Clock className="w-3 h-3" />
                                                 {course.duration}
                                             </span>
-                                            <span className="flex items-center">
-                                                <TrendingUp className="w-3 h-3 mr-1" />
+                                            <span className="flex items-center gap-1">
+                                                <TrendingUp className="w-3 h-3" />
                                                 {course.enrolled}
                                             </span>
                                         </div>
 
-                                        <div className="flex justify-between items-center">
+                                        <div className="flex justify-center items-center gap-3">
                                             <span className={`text-xs px-2 py-1 border ${course.level === 'Beginner' ? 'border-green-500 text-green-500' :
                                                     course.level === 'Intermediate' ? 'border-yellow-500 text-yellow-500' :
                                                         'border-red-500 text-red-500'
@@ -237,7 +239,7 @@ export default function LearnPage() {
                         </div>
 
                         {/* View All Link */}
-                        <div className="mt-4 text-center">
+                        <div className="mt-6 text-center">
                             <Link href={`/learn/${language.id}`} className="text-green-400 hover:text-green-300 inline-flex items-center">
                                 View all {language.name} content
                                 <ChevronRight className="w-4 h-4 ml-1" />
@@ -248,7 +250,8 @@ export default function LearnPage() {
             </div>
 
             {/* Learning Path Suggestion */}
-            <div className="mt-12 border-2 border-green-400 p-6 text-center">
+            <div className="w-full flex flex-col items-center mt-12 md:mt-16">
+                <div className="border-2 border-green-400 p-6 md:p-8 lg:p-12 text-center rounded-lg w-full max-w-4xl mx-auto">
                 <Terminal className="w-12 h-12 text-green-400 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-green-400 mb-2">Need a Custom Learning Path?</h3>
                 <p className="text-green-400 opacity-80 mb-4">
@@ -258,6 +261,7 @@ export default function LearnPage() {
                     <Code className="mr-2 w-4 h-4" />
                     CREATE MY PATH
                 </Link>
+                </div>
             </div>
         </div>
     );
