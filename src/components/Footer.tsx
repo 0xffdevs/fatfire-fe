@@ -24,6 +24,8 @@ export default function Footer() {
                             <li><Link href="/tweets" className="text-green-400 text-sm hover:text-green-300 transition-colors">&gt; Curated Tweets</Link></li>
                             <li><Link href="/qna" className="text-green-400 text-sm hover:text-green-300 transition-colors">&gt; Q&A Section</Link></li>
                             <li><Link href="/calculators" className="text-green-400 text-sm hover:text-green-300 transition-colors">&gt; Calculators</Link></li>
+                            <li><Link href="/pathways" className="text-green-400 text-sm hover:text-green-300 transition-colors">&gt; Learning Pathways</Link></li>
+                            <li><Link href="/blogs" className="text-green-400 text-sm hover:text-green-300 transition-colors">&gt; Blog Posts</Link></li>
                         </ul>
                     </div>
 

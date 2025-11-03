@@ -346,9 +346,8 @@ npm install -g circom snarkjs
                             {/* Answer (Expandable) */}
                             {expandedQuestion === q.id && (
                                 <div className="border-t border-green-400 pt-4">
-                                    <div className="prose prose-green max-w-none">
+                                    <div className="prose prose-green max-w-none text-green-400">
                                         <ReactMarkdown
-                                            className="text-green-400"
                                             components={{
                                                 h2: ({ children }) => (
                                                     <h2 className="text-xl font-bold text-green-400 mt-4 mb-2">{children}</h2>
@@ -371,8 +370,9 @@ npm install -g circom snarkjs
                                                 li: ({ children }) => (
                                                     <li className="text-green-400 mb-1">{children}</li>
                                                 ),
-                                                code: ({ inline, children }) => (
-                                                    inline ? (
+                                                code: (props: any) => {
+                                                    const { inline, children } = props;
+                                                    return inline ? (
                                                         <code className="bg-green-900 bg-opacity-30 px-1 py-0.5 rounded text-green-300">
                                                             {children}
                                                         </code>
@@ -380,8 +380,8 @@ npm install -g circom snarkjs
                                                         <code className="block bg-black border border-green-400 p-3 rounded my-3 text-green-300 overflow-x-auto">
                                                             {children}
                                                         </code>
-                                                    )
-                                                ),
+                                                    );
+                                                },
                                                 pre: ({ children }) => (
                                                     <pre className="code-block">{children}</pre>
                                                 ),

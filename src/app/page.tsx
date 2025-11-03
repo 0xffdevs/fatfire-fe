@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, PropsWithChildren } from 'react';
+import Link from 'next/link';
 import { ArrowRight, TrendingUp, Code, DollarSign, BookOpen, Calculator, MessageSquare, Twitter, Youtube, Play, ChevronRight, Zap, Target, Cpu } from 'lucide-react';
 
 // Minimal mock link: prevents navigation and looks clickable
@@ -121,14 +122,14 @@ export default function HomePage() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 md:gap-6 px-4 items-center justify-center">
-          <MockLink className="btn-terminal">
+          <Link href="/learn" className="btn-terminal">
             <Code className="w-5 h-5" />
             START LEARNING
-          </MockLink>
-          <MockLink className="btn-terminal">
+          </Link>
+          <Link href="/calculators" className="btn-terminal">
             <Calculator className="w-5 h-5" />
             CALCULATE FIRE
-          </MockLink>
+          </Link>
         </div>
 
         <div className="mt-8 text-sm text-green-400 opacity-60">
@@ -170,14 +171,14 @@ export default function HomePage() {
           <h2 className="text-xl md:text-2xl lg:text-3xl font-bold glitch" data-text="FEATURED POSTS">
             &gt; FEATURED POSTS
           </h2>
-          <MockLink className="text-green-400 hover:text-green-300 flex items-center">
+          <Link href="/blogs" className="text-green-400 hover:text-green-300 flex items-center">
             View all <ChevronRight className="w-4 h-4 ml-1" />
-          </MockLink>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 w-full max-w-7xl mx-auto">
           {featuredPosts.map((post) => (
-            <article key={post.id} className="card-terminal text-center">
+            <Link key={post.id} href="/blogs" className="card-terminal text-center hover:scale-105 transition-transform">
               <div className="flex flex-wrap gap-2 mb-4 justify-center">
                 {post.tags.map(tag => (
                   <span key={tag} className="tag">#{tag}</span>
@@ -191,7 +192,7 @@ export default function HomePage() {
                 <span>{post.readTime} read</span>
                 <span>{post.views} views</span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
@@ -240,9 +241,9 @@ export default function HomePage() {
           <h2 className="text-xl md:text-2xl lg:text-3xl font-bold glitch" data-text="CURATED TWEETS">
             &gt; CURATED TWEETS
           </h2>
-          <MockLink className="text-green-400 hover:text-green-300 flex items-center">
+          <Link href="/tweets" className="text-green-400 hover:text-green-300 flex items-center">
             View all <ChevronRight className="w-4 h-4 ml-1" />
-          </MockLink>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 w-full max-w-5xl mx-auto">
@@ -291,22 +292,22 @@ export default function HomePage() {
           <h2 className="text-xl md:text-2xl lg:text-3xl font-bold glitch" data-text="POPULAR QUESTIONS">
             &gt; POPULAR QUESTIONS
           </h2>
-          <MockLink className="text-green-400 hover:text-green-300 flex items-center">
+          <Link href="/qna" className="text-green-400 hover:text-green-300 flex items-center">
             Ask question <ChevronRight className="w-4 h-4 ml-1" />
-          </MockLink>
+          </Link>
         </div>
 
         <div className="space-y-6 md:space-y-8 w-full max-w-4xl mx-auto">
           {popularQuestions.map((q) => (
-            <div key={q.id} className="card-terminal flex flex-col items-center gap-4 text-center">
-              <MockLink className="text-green-400 hover:text-green-300 font-bold">
+            <Link key={q.id} href="/qna" className="card-terminal flex flex-col items-center gap-4 text-center hover:scale-105 transition-transform">
+              <span className="text-green-400 hover:text-green-300 font-bold">
                 Q: {q.question}
-              </MockLink>
+              </span>
               <div className="flex items-center text-green-400 opacity-60 gap-2">
                 <TrendingUp className="w-4 h-4" />
                 <span className="text-sm whitespace-nowrap">{q.votes} votes</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

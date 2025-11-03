@@ -1,12 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { BookOpen, Clock, Eye, Calendar, User, ChevronRight, Search } from 'lucide-react';
 
-export default function BlogsPage() {
+function BlogsContent() {
+    const searchParams = useSearchParams();
     const [selectedTag, setSelectedTag] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
+
+    // Initialize search query from URL parameter
+    useEffect(() => {
+        const query = searchParams.get('search') || searchParams.get('q') || '';
+        if (query) {
+            setSearchQuery(query);
+        }
+    }, [searchParams]);
 
     // Mock blog posts
     const blogPosts = [
@@ -275,5 +285,17 @@ export default function BlogsPage() {
                 </Link>
             </div>
         </div>
+    );
+}
+
+export default function BlogsPage() {
+    return (
+        <Suspense fallback={
+            <div className="w-full flex flex-col items-center min-h-screen justify-center">
+                <p className="text-green-400">Loading...</p>
+            </div>
+        }>
+            <BlogsContent />
+        </Suspense>
     );
 }
